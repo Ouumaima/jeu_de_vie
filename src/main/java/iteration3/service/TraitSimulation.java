@@ -5,19 +5,15 @@ import iteration3.model.Grille;
 
 public class TraitSimulation {
 
-	private PrintConsole printService;
+	private PrintConsole printConsole;
 	private Integer iterationNumber;
 	private Grille grid;
 
 	public TraitSimulation() {
 	}
 
-	public PrintConsole getPrintService() {
-		return printService;
-	}
-
-	public void setPrintService(PrintConsole printService) {
-		this.printService = printService;
+	public void setPrintConsole(PrintConsole printConsole) {
+		this.printConsole = printConsole;
 	}
 
 	public TraitSimulation(int iterationNumber, Grille grid) {
@@ -26,10 +22,10 @@ public class TraitSimulation {
 	}
 
 	public void start() {
-		printService.ecrire( 0, grid);
+		printConsole.ecrire( 0, grid);
 		for (int i = 1; i <= this.iterationNumber; i++) {
 			grid.evolution();
-			printService.ecrire( i, grid);
+			printConsole.ecrire( i, grid);
 		}
 	}
 

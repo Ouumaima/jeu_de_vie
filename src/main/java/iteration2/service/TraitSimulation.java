@@ -12,10 +12,6 @@ public class TraitSimulation {
 
 	public TraitSimulation() {
 	}
-	
-	public PrintConsole getPrintConsole() {
-		return printConsole;
-	}
 
 	public void setPrintConsole(PrintConsole printConsole) {
 		this.printConsole = printConsole;

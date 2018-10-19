@@ -11,7 +11,7 @@ public class Demo {
 
 		LoadFile loader = new LoadFile();
 		TraitSimulation Simulation = loader.load("src\\main\\ressource\\data10.txt");
-		Simulation.setPrintService(new PrintConsole());
+		Simulation.setPrintConsole(new PrintConsole());
 		Simulation.traitemet();
 	}
 
@@ -31,7 +31,7 @@ public class Demo {
 		iteration3.service.TraitSimulation simulator = loader
 				.load("src\\main\\ressource\\data5.txt");
 
-		simulator.setPrintService(new iteration3.service.PrintConsole());
+		simulator.setPrintConsole(new iteration3.service.PrintConsole());
 		simulator.start();
 	}
 

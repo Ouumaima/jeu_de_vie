@@ -12,13 +12,10 @@ public class TraitSimulation {
 	public TraitSimulation() {
 	}
 
-	public PrintConsole getPrintService() {
-		return printConsole;
-	}
-
-	public void setPrintService(PrintConsole printConsole) {
+	public void setPrintConsole(PrintConsole printConsole) {
 		this.printConsole = printConsole;
 	}
+
 
 	public TraitSimulation(String dimension, int iterationNombre, Grille grille) {
 		this.dimension = dimension;
