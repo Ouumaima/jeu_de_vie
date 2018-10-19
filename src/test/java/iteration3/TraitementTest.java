@@ -1,7 +1,7 @@
 package iteration3;
 
 import iteration3.model.Cellule;
-import iteration3.model.Grid;
+import iteration3.model.Grille;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -9,121 +9,121 @@ import org.junit.Test;
 
 public class TraitementTest {
 
-	private Grid targetSevenForGrid;
-	private Grid sourceSevenForGrid;
-	private Grid gridWithOneAliveCell;
-	private Grid gridWithOneDEADCell;
-	private Grid targetGrid;
-	private Grid gridWithTwoDEADCells;
-	private Grid gridWithOneDEADCellAndOneLiveCell;
-	private Grid gridWithTwoLiveCells;
-	private Grid targetTwoTwoGrid;
-	private Grid sourceTwoTwoGrid;
+	private Grille ExpectedGrilleSeptQuatreDimension;
+	private Grille GrilleAcSeptQuatreDimension;
+	private Grille grilleAcUneCelluleVivante;
+	private Grille grilleAcUneCelluleMorte;
+	private Grille expectedGrille;
+	private Grille grilleAcDeuxCellulesMortes;
+	private Grille grilleAcCelluleVivanteEtCelluleMorte;
+	private Grille grilleAcDeuxCellulesVivantes;
+	private Grille ExpectedGrilleDeuxDeuxDimension;
+	private Grille GrilleAcDeuxDeuxDimension;
 
 	@Before
 	public void setUp() throws Exception {
 
-		Cellule c011 = new Cellule(true);
-		Cellule c012 = new Cellule(false);
-		Cellule c013 = new Cellule(true);
-		Cellule c014 = new Cellule(true);
-		Cellule c015 = new Cellule(true);
-		Cellule c016 = new Cellule(true);
-		Cellule c017 = new Cellule(true);
+		Cellule c1 = new Cellule(true);
+		Cellule c2 = new Cellule(false);
+		Cellule c3 = new Cellule(true);
+		Cellule c4 = new Cellule(true);
+		Cellule c5 = new Cellule(true);
+		Cellule c6 = new Cellule(true);
+		Cellule c7 = new Cellule(true);
 
-		Cellule[][] cells01 = { { c011 } };
+		Cellule[][] cells01 = { { c1 } };
+		grilleAcUneCelluleVivante = new Grille(cells01);
+		
+		Cellule[][] cells02 = { { c2 } };
+		grilleAcUneCelluleMorte = new Grille(cells02);
+		
+		expectedGrille = new Grille(cells02);
 
-		this.gridWithOneAliveCell = new Grid(cells01);
+		Cellule[][] cells03 = { { c1, c1 } };
+		grilleAcDeuxCellulesVivantes = new Grille(cells03);
+		
+		Cellule[][] cells04 = { { c2, c2 } };
+		grilleAcDeuxCellulesMortes = new Grille(cells04);
+		
+		
+		Cellule[][] cells05 = { { c1, c2 } };
+		grilleAcCelluleVivanteEtCelluleMorte = new Grille(cells05);
+		
+		Cellule[][] cells06 = { { c1, c2 }, { c1, c1 } };
+		GrilleAcDeuxDeuxDimension = new Grille(cells06);
+		
+		Cellule[][] cells07 = { { c1, c2, c3, c4 },
+				{ c2, c2, c3, c4 }, { c3, c2, c3, c4 },
+				{ c4, c2, c3, c4 }, { c5, c2, c3, c4 },
+				{ c6, c2, c3, c4 }, { c7, c2, c3, c4 } };
+		GrilleAcSeptQuatreDimension = new Grille(cells07);
+		
+		
+		
+		
+		Cellule[][] cells08 = { { c2, c1, c1, c1 },
+				{ c2, c2, c2, c2 }, { c2, c2, c2, c2 },
+				{ c1, c2, c2, c2 }, { c1, c2, c2, c2 },
+				{ c1, c2, c2, c2 }, { c2, c2, c1, c1 } };
+		ExpectedGrilleSeptQuatreDimension = new Grille(cells08);
+		
 
-		Cellule[][] cells02 = { { c011, c012 } };
 
-		this.gridWithOneDEADCellAndOneLiveCell = new Grid(cells02);
+		Cellule[][] expectedCellule = { { c1, c1 }, 
+									{ c1, c1 } };
+		ExpectedGrilleDeuxDeuxDimension = new Grille(expectedCellule);
 
-		Cellule[][] cells08 = { { c012, c012 } };
+		
 
-		this.gridWithTwoDEADCells = new Grid(cells08);
-
-		Cellule[][] cells09 = { { c011, c011 } };
-
-		this.gridWithTwoLiveCells = new Grid(cells09);
-
-		Cellule[][] cells03 = { { c011, c012 }, { c011, c011 } };
-
-		this.sourceTwoTwoGrid = new Grid(cells03);
-
-		Cellule[][] cellTarget = { { c011, c011 }, { c011, c011 } };
-		this.targetTwoTwoGrid = new Grid(cellTarget);
-
-		Cellule[][] cells04 = { { c011, c012, c013, c014 },
-				{ c012, c012, c013, c014 }, { c013, c012, c013, c014 },
-				{ c014, c012, c013, c014 }, { c015, c012, c013, c014 },
-				{ c016, c012, c013, c014 }, { c017, c012, c013, c014 } };
-
-		this.sourceSevenForGrid = new Grid(cells04);
-
-		Cellule[][] cells05 = { { c012, c011, c011, c011 },
-				{ c012, c012, c012, c012 }, { c012, c012, c012, c012 },
-				{ c011, c012, c012, c012 }, { c011, c012, c012, c012 },
-				{ c011, c012, c012, c012 }, { c012, c012, c011, c011 } };
-
-		this.targetSevenForGrid = new Grid(cells05);
-		Cellule[][] cells06 = { { c012 } };
-		this.targetGrid = new Grid(cells06);
-
-		this.gridWithOneDEADCell = new Grid(cells05);
-		Cellule[][] cells07 = { { c012 } };
-		this.gridWithOneDEADCell = new Grid(cells07);
-
+		
+		
 	}
 
 	@Test
-	public void should8_Return_targetSevenForGrid_from_sourceSevenForGrid() {
-		sourceSevenForGrid.evolution();
-		Assertions.assertThat(sourceSevenForGrid).isEqualTo(targetSevenForGrid);
+	public void should_Return_Grille_Ac_Une_Cellule_Morte_When_Cellule_initiale_Vivantetete() {
+		
+		grilleAcUneCelluleVivante.evolution();
+		Assertions.assertThat(expectedGrille).isEqualTo(grilleAcUneCelluleVivante);
 	}
 
 	@Test
-	public void should_Return_A_Grid_With_A_DEAD_Cell_After_Current_ALIVEState() {
-		gridWithOneAliveCell.evolution();
-
-		Assertions.assertThat(targetGrid).isEqualTo(gridWithOneAliveCell);
+	public void should_Return_Grille_Ac_Une_Cellule_Morte_When_Cellule_initiale_Mortetete() {
+		
+		grilleAcUneCelluleMorte.evolution();
+		Assertions.assertThat(expectedGrille).isEqualTo(grilleAcUneCelluleMorte);
 	}
 
 	@Test
-	public void should_Return_A_Grid_With_A_DEAD_Cell_After_CurrentDEADState() {
-		gridWithOneDEADCell.evolution();
-
-		Assertions.assertThat(targetGrid).isEqualTo(gridWithOneDEADCell);
+	public void should_Return_Grille_Ac_Deux_Cellules_Mortes_When_Deux_Cellules_initiales_Vivantestete() {
+		
+		grilleAcDeuxCellulesVivantes.evolution();
+		Assertions.assertThat(grilleAcDeuxCellulesMortes).isEqualTo(grilleAcDeuxCellulesVivantes);
 	}
 
 	@Test
-	public void should_Return_A_Grid_With_A_TWO_DEAD_Cell_After_Current_TWO_ALIVEState() {
-		gridWithTwoLiveCells.evolution();
-
-		Assertions.assertThat(gridWithTwoDEADCells).isEqualTo(
-				gridWithTwoLiveCells);
+	public void should_Return_Grille_Ac_Deux_Cellules_Mortes_When_Deux_Cellules_initiales_Mortestete() {
+		
+		grilleAcDeuxCellulesMortes.evolution();
+		Assertions.assertThat(grilleAcDeuxCellulesMortes).isEqualTo(grilleAcDeuxCellulesMortes);
 	}
 
 	@Test
-	public void should_Return_A_Grid_With_A_TWO_DEAD_Cell_After_Current_TWO_DEADState() {
-		gridWithTwoDEADCells.evolution();
-
-		Assertions.assertThat(gridWithTwoDEADCells).isEqualTo(
-				gridWithTwoDEADCells);
+	public void should_Return_Grille_Ac_Deux_Cellules_Mortes_When_Une_Vivante_Deux_Mortetete() {
+		
+		grilleAcCelluleVivanteEtCelluleMorte.evolution();
+		Assertions.assertThat(grilleAcDeuxCellulesMortes).isEqualTo(grilleAcCelluleVivanteEtCelluleMorte);
 	}
 
-	@Test
-	public void should_Return_A_Grid_With_A_TWO_DEAD_Cell_After_Current_ONE_DEADState_AND_ONE_LIVEState() {
-		gridWithOneDEADCellAndOneLiveCell.evolution();
-
-		Assertions.assertThat(gridWithTwoDEADCells).isEqualTo(
-				gridWithOneDEADCellAndOneLiveCell);
+	@  Test
+	public void should_Return_Grille_Ac_4Cellules_Vivantes_When_Une_Morte_Trois_Vivantetate() {
+		
+		GrilleAcDeuxDeuxDimension.evolution();
+		Assertions.assertThat(ExpectedGrilleDeuxDeuxDimension).isEqualTo(GrilleAcDeuxDeuxDimension);
 	}
-
 	@Test
-	public void should_Return_A_Grid_With_A_FoorLivesCell_After_Current_ONE_DEADState_AND_Three_LIVEState() {
-		sourceTwoTwoGrid.evolution();
-
-		Assertions.assertThat(targetTwoTwoGrid).isEqualTo(sourceTwoTwoGrid);
+	public void should_Return_ExpectedGrilleSeptQuatreDimension_from_ExpectedGrilleSeptQuatreDimension() {
+		
+		GrilleAcSeptQuatreDimension.evolution();
+		Assertions.assertThat(ExpectedGrilleSeptQuatreDimension).isEqualTo(GrilleAcSeptQuatreDimension);
 	}
 }

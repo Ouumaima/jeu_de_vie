@@ -1,7 +1,7 @@
 package iteration2;
 
 import iteration2.model.Cellule;
-import iteration2.model.Grid;
+import iteration2.model.Grille;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -9,69 +9,61 @@ import org.junit.Test;
 
 public class TraitementTest {
 
-	private Grid gridWithOneAliveCell;
-	private Grid gridWithOneDEADCell;
+	
+	private Grille grilleAcUneCelluleVivante;
+	private Grille grilleAcUneCelluleMorte;
+	private Grille expectedGrille;
+	
 
-	private Grid gridWithTwoDEADCells;
-	private Grid gridWithOneDEADCellAndOneLiveCell;
-	private Grid gridWithTwoLiveCells;
-	private Grid targetGrid;
+	private Grille grilleAcDeuxCellulesMortes;
+	private Grille grilleAcCelluleVivanteEtCelluleMorte;
+	private Grille grilleAcDeuxCellulesVivantes;
 
 	@Before
 	public void setUp() throws Exception {
 
-		Cellule aliveCell = new Cellule(true);
-		Cellule deadCell = new Cellule(false);
-
-		gridWithOneAliveCell = new Grid(aliveCell);
-		gridWithOneDEADCell = new Grid(deadCell);
-
-		Cellule targetCell = new Cellule(false);
-
-		targetGrid = new Grid(targetCell);
-
-		gridWithTwoDEADCells = new Grid(new Cellule(false), new Cellule(false));
-		gridWithOneDEADCellAndOneLiveCell = new Grid(new Cellule(false),
-				new Cellule(true));
-		gridWithTwoLiveCells = new Grid(new Cellule(true), new Cellule(true));
+		grilleAcUneCelluleVivante   = new Grille(new Cellule(true));
+		grilleAcUneCelluleMorte = new Grille(new Cellule(false));
+		grilleAcDeuxCellulesMortes = new Grille(new Cellule(false), new Cellule(false));
+		grilleAcCelluleVivanteEtCelluleMorte = new Grille(new Cellule(false),new Cellule(true));
+		grilleAcDeuxCellulesVivantes = new Grille(new Cellule(true), new Cellule(true));
+		expectedGrille = new Grille(new Cellule(false));
 
 	}
 
 	@Test
-	public void should_Return_A_Grid_With_A_DEAD_Cell_After_Current_ALIVEState() {
-		gridWithOneAliveCell.evolution();
-
-		Assertions.assertThat(targetGrid).isEqualTo(gridWithOneAliveCell);
+	public void should_Return_Grille_Ac_Une_Cellule_Morte_When_Cellule_initiale_Vivante() {
+		
+		grilleAcUneCelluleVivante.evolution();
+		Assertions.assertThat(expectedGrille).isEqualTo(grilleAcUneCelluleVivante);
 	}
 
 	@Test
-	public void should_Return_A_Grid_With_A_DEAD_Cell_After_CurrentDEADState() {
-		gridWithOneDEADCell.evolution();
-
-		Assertions.assertThat(targetGrid).isEqualTo(gridWithOneDEADCell);
+	public void should_Return_Grille_Ac_Une_Cellule_Morte_When_Cellule_initiale_Morte() {
+		
+		grilleAcUneCelluleMorte.evolution();
+		Assertions.assertThat(expectedGrille).isEqualTo(grilleAcUneCelluleMorte);
 	}
 
 	@Test
-	public void should_Return_A_Grid_With_A_TWO_DEAD_Cell_After_Current_TWO_ALIVEState() {
-		gridWithTwoLiveCells.evolution();
-
-		Assertions.assertThat(gridWithTwoDEADCells).isEqualTo(
-				gridWithTwoLiveCells);
+	
+	public void should_Return_Grille_Ac_Deux_Cellules_Mortes_When_Deux_Cellules_initiales_Vivantes() {
+		
+		grilleAcDeuxCellulesVivantes.evolution();
+		Assertions.assertThat(grilleAcDeuxCellulesMortes).isEqualTo(grilleAcDeuxCellulesVivantes);
 	}
 
 	@Test
-	public void should_Return_A_Grid_With_A_TWO_DEAD_Cell_After_Current_TWO_DEADState() {
-		gridWithTwoDEADCells.evolution();
-
-		Assertions.assertThat(gridWithTwoDEADCells).isEqualTo(
-				gridWithTwoDEADCells);
+	public void should_Return_Grille_Ac_Deux_Cellules_Mortes_When_Deux_Cellules_initiales_Mortes() {
+		
+		grilleAcDeuxCellulesMortes.evolution();
+		Assertions.assertThat(grilleAcDeuxCellulesMortes).isEqualTo(grilleAcDeuxCellulesMortes);
 	}
 
-	@Test
-	public void should_Return_A_Grid_With_A_TWO_DEAD_Cell_After_Current_ONE_DEADState_AND_ONE_LIVEState() {
-		gridWithOneDEADCellAndOneLiveCell.evolution();
-
-		Assertions.assertThat(gridWithTwoDEADCells).isEqualTo(
-				gridWithOneDEADCellAndOneLiveCell);
+	@Test 
+	public void should_Return_Grille_Ac_Deux_Cellules_Mortes_When_Une_Vivante_Deux_Morte() {
+		
+		grilleAcCelluleVivanteEtCelluleMorte.evolution();
+		Assertions.assertThat(grilleAcDeuxCellulesMortes).isEqualTo(grilleAcCelluleVivanteEtCelluleMorte);
 	}
 }

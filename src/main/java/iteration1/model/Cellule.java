@@ -1,24 +1,28 @@
 package iteration1.model;
 
 public class Cellule {
-	private boolean live = false;
+	private boolean enVie ;
 
-	public Cellule() {
-		super();
-		this.live = false;
+	public Cellule() {}
+
+	public Cellule(boolean enVie) {
+		this.enVie = enVie;
 	}
 
-	public Cellule(boolean live) {
-		super();
-		this.live = live;
+	public boolean isEnVie() {
+		return enVie;
 	}
 
-	public boolean isLive() {
-		return live;
+	public void setEnVie(boolean enVie) {
+		this.enVie = enVie;
 	}
 
-	public void setLive(boolean live) {
-		this.live = live;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (enVie ? 1231 : 1237);
+		return result;
 	}
 
 	@Override
@@ -30,14 +34,11 @@ public class Cellule {
 		if (getClass() != obj.getClass())
 			return false;
 		Cellule other = (Cellule) obj;
-		if (live != other.live)
+		if (enVie != other.enVie)
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Cell [live=" + live + "]";
-	}
-
+	
+	
 }

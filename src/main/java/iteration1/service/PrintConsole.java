@@ -1,9 +1,20 @@
 package iteration1.service;
 
-import iteration1.model.Grid;
+import iteration1.model.Grille;
 
-public interface PrintConsole {
+public class PrintConsole {
 
-	public abstract void print(int stepNumber, Grid grid) ;
+	public void ecrire(int evolutionNbre, Grille grille) {
+		String signe;
+		if (grille.getCellule().isEnVie())
+			signe = "+";
+		else
+			signe = "-";
+
+		System.out.println("Evolution nombre " + evolutionNbre );
+		System.out.println( signe );
+	
 		
+	}
+	
 }
