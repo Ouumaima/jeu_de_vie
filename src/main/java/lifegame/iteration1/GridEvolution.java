@@ -58,7 +58,7 @@ public class GridEvolution {
 		// III)-Evolution et affichage de la grille pour chaque itéaration
 		for (int i = 0; i < nbrEvolution; i++) {
 			changeValue(grid);
-			System.out.println("Iteration: " + i + " ==>  Resultat : " + grid.getCell().getState());
+			System.out.println("Iteration: " + (i+1) + " ==>  Resultat : " + grid.getCell().getState());
 		}
 		System.out.println("\n");
 		return grid;
