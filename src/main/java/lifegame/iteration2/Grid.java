@@ -1,0 +1,45 @@
+package lifegame.iteration2;
+
+import java.util.Arrays;
+
+public class Grid {
+
+	private Cell[] cell;
+
+	public Cell[] getCell() {
+		return cell;
+	}
+
+	public void setCell(Cell[] cell) {
+		this.cell = cell;
+	}
+
+	public Grid(Cell[] cell) {
+		super();
+		this.cell = cell;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(cell);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Grid other = (Grid) obj;
+		if (!Arrays.equals(cell, other.cell))
+			return false;
+		return true;
+	}
+
+	
+}
